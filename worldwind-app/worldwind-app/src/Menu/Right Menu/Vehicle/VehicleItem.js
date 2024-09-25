@@ -96,7 +96,7 @@ const VehicleItem = ({
         }`}
         onClick={() => handleSelectVehicleWASDMode(vehicle.id)}
       >
-        {selectedPlacemarks.includes(vehicle.id) ? 'Deactivate Manuel Movement' : 'Activate Manuel Movement'}
+        {selectedPlacemarks.includes(vehicle.id) ? 'Deactivate Manual Movement' : 'Activate Manual Movement'}
       </button>
       <button
         className="placemarkSelectButton popupButton"

@@ -8,3 +8,4 @@ Add different vehicle types on the World Wind world map.
 Add obstacles.
 Add waypoints that is not assigned to the vehicles.
 Start/Stop button to move the vehicles towards its waypoints.
+Also, you can control the vehicles manually with the "Activate Manual Movement" button.

@@ -1,7 +1,7 @@
 // VehiclesTab.js
 import React from 'react';
 import VehicleList from './VehicleList';
-import useVehicleMovement from './manuelVehicleMovement';
+import useVehicleMovement from './manualVehicleMovement';
 import '../../../styles.css';
 
 const VehiclesTab = ({
