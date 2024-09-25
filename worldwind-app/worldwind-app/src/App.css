@@ -1,0 +1,9 @@
+/* src/App.css */
+.App {
+  text-align: center;
+  height: 100vh; /* Tam yüksekliği kapsar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

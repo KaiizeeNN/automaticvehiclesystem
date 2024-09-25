@@ -1,0 +1,467 @@
+
+#canvas-container { 
+  position: relative; /* Konteynerin içindeki öğelerin konumlandırılması için relatif konumlandırma */
+  width: 100%; /* Canvas genişliği tam ekran genişliği */
+  height: 99%; /* Canvas yüksekliği tam ekran yüksekliği */
+}
+
+#canvasOne {
+  width: 100%; /* Canvas genişliği tam ekran genişliği */
+  height: 100%; /* Canvas yüksekliği tam ekran yüksekliği */
+
+}
+
+#button-container {
+  position: absolute; /* Buton konteynerinin canvas üzerinde serbestçe konumlandırılabilmesi için */
+  top: 1vh; /* Üstten 1vh uzaklık (viewport yüksekliğinin yüzdesi) */
+  left: 1vh; /* Soldan 1vh uzaklık */
+  display: flex; /* Flexbox kullanarak iç öğeleri hizala */
+  flex-direction: column; /* Butonları dikey olarak hizala */
+  gap: 1vh; /* Butonlar arasındaki boşluk */
+  z-index: 10; /* Canvas'ın üstünde görünmesi için z-index */
+}
+
+.menu-toggle {
+  position: relative; /* Menü butonunun içindeki menünün konumlandırılması için relatif konumlandırma */
+}
+
+.menu-content {
+  display: flex; /* Menü öğelerini flexbox ile hizala */
+  flex-direction: row; /* Menü öğelerini yatay olarak hizala */
+  position: absolute; /* Menü içeriğinin menü butonunun sağında görünmesi için */
+  left: calc(100% + 1vh); /* Menü butonunun sağında 1vh uzaklıkta açılacak */
+  top: 0; /* Menü butonunun üstünde başlayacak */
+  background: none; /* Menü içeriğinin arka plan rengini kaldır */
+  z-index: 11; /* Menü içeriğinin diğer öğelerin üzerinde görünmesi için z-index */
+  padding: 0.3vh 0; /* Menü içindeki butonlara dikey padding */
+  align-items: center; /* Butonları dikeyde ortala */
+  
+}
+
+.menu-button {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #8677a7  0, #4b445a 100%);
+  border: 2px outset;
+  border-radius: 6px; /* Köşe yuvarlaklığı */
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 2vh;
+  font-weight: bold;
+  height: 5vh; /* Butonun yüksekliği */
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .15s, transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  margin-right: 1vh; /* Butonlar arasındaki boşluk */
+}
+
+.menu-button:hover {
+  transform: translateY(-2px);
+}
+
+.menu-button:active {
+  box-shadow: #3c4fe0 0 3px 7px inset;
+  transform: translateY(2px);
+  
+}
+
+.menu-button.alliance-active {
+  background-image: radial-gradient(100% 100% at 100% 0, #80ff86   0, #2ac532 100%);
+}
+
+.menu-button.enemy-active {
+  background-image: radial-gradient(100% 100% at 100% 0, #fd6c6c, #ff1f1f 100%);
+}
+
+.menu-button.inactive {
+  background-image: radial-gradient(100% 100% at 100% 0, #8677a7  0, #4b445a 100%);
+}
+
+.menu-button-toggle {
+  width: 20vh; /* Menü butonlarının genişliği */
+  height: 6vh; /* Menü butonlarının yüksekliği */
+}
+
+/* Sağ üst köşedeki buton için stiller */
+.right-menu-toggle {
+  position: fixed; /* Butonu canvas'ın üzerinde serbestçe konumlandırmak için */
+  right: 1vh; /* Sağdan 1vh uzaklık */
+  height: 5vh; /* Butonun yüksekliği */
+  background-color: #007bff; /* Butonun arka plan rengi */
+  color: white; /* Buton metninin rengi */
+  padding: 1vh; /* İçerik paddingi */
+  cursor: pointer; /* Buton üzerine gelindiğinde imleç şeklini değiştirme */
+  align-items: center; /* Buton içeriğini dikeyde ortala */
+  text-align: center; /* Metni ortala */
+  border-radius: 5px; /* Buton köşelerini yuvarlat */
+  width: 16vh; /* Butonun genişliği */
+  color: white; /* Metin rengi */
+  padding: 0; /* İçerik paddingini kaldır */
+  cursor: pointer; /* Buton üzerine gelindiğinde imleç şeklini değiştirme */
+  font-size: 2vh; /* Font boyutu */
+  margin-right: 1vh; /* Butonlar arasındaki boşluk */
+}
+
+.right-menu-content {
+  position: fixed; /* Free positioning of the right menu */
+  top: 7vh; /* 7vh below the button */
+  right: 1vh; /* 1vh from the right edge */
+  width: 37vh; /* Width of the menu */
+  height: 87vh; /* Height of the menu */
+  border-radius: 1vh; /* Rounded corners */
+  border: 2px outset white;
+  color: white; /* Text color */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Align items to the left */
+  padding: 10px; /* Padding inside the menu */
+  overflow-y: auto; /* Scroll if content overflows */
+  background-image: radial-gradient(100% 100% at 100% 0, #8677a7  0, #4b445a 100%);
+}
+
+.right-menu-content ul {
+  list-style-type: none; /* Remove default list bullets */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  width: 100%; /* Full width of the container */
+}
+
+.placemark-item, .path-details {
+  margin-bottom: 1vh; /* Space between items */
+  margin-top: 1vh;
+  padding: 10px;
+  border-radius: 1vh; /* Rounded corners */
+  border: 2px outset;
+  font-weight: bold;
+  width: 90%; /* Full width of the container */
+  max-width: none; /* Remove maximum width limitation */
+  text-align: left; /* Align text to the left */
+  background-image: radial-gradient(100% 100% at 100% 0, #c8c5d4 0, #6d6781 100%);
+}
+
+.placemark-details {
+  margin-bottom: 5px;
+}
+
+.placemarkDeleteButton, .pathDeleteButton {
+  display: block; /* Make the button a block element */
+  margin-top: 5px; /* Space between details and button */
+  padding: 5px 10px;
+
+  background-image: radial-gradient(100% 100% at 100% 0, #fd6c6c, #ff1f1f 100%);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center; /* Center text inside the button */
+
+  width:100%;
+  height: 4vh;
+  border-radius: 1vh; /* Rounded corners */
+  border: 2px outset white;
+  font-size: 2vh;
+}
+
+.placemarkDeleteButton:hover {
+  background-color: #d33; /* Darker red on hover */
+}
+
+.placemarkSelectButton {
+
+width: 100%;
+height:3vh;
+font-size:2vh;
+cursor:pointer;
+border-radius: 1vh; /* Rounded corners */
+border: 2px outset white;
+margin-top: 0.5vh;
+background-image: radial-gradient(100% 100% at 100% 0, #ffffff, #cbcbcb 100%);
+
+
+}
+
+.placemarkSelectButton.selected {
+  background-image: radial-gradient(100% 100% at 100% 0, #80ff86   0, #2ac532 100%);
+color: white;
+}
+
+.tab-content {
+
+width: 100%;
+}
+
+
+.tab-button, .drawPathButton {
+align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #938ea9 0, #2a2638 100%);
+  border: 2px outset;
+  border-radius: 6px; /* Köşe yuvarlaklığı */
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 2vh;
+  font-weight: bold;
+  height: 5vh; /* Butonun yüksekliği */
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .15s, transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  margin-right: 1vh; /* Butonlar arasındaki boşluk */
+}
+.tab-button.active{
+
+  background-image: radial-gradient(100% 100% at 100% 0, #c8c5d4 0, #6d6781 100%);
+
+}
+
+.tab-button:hover, .drawPathButton:enabled:hover{
+
+  transform: translateY(-2px);
+
+}
+
+.menu-button.right-menu-toggle.clicked {
+background-color: #0056b3; /* Change to your desired color */
+color: white;
+}
+
+.drawPathButton:disabled {
+
+cursor:default;
+background-color: #0056b3;
+border: 2px outset grey;
+}
+
+.drawPathButton{
+
+width: 15vh;
+height: 5vh;
+border-radius: 1vh; /* Rounded corners */
+border: 2px outset white;
+
+}
+
+.placemarkAddWaypoint {
+
+width: 15vh;
+height: 3vh;
+margin-top: 5px;
+border-radius: 1vh; /* Rounded corners */
+border: 2px outset white;
+background-color: rgb(0, 123, 255);
+color: white;
+cursor: pointer;
+}
+
+.placemarkAddWaypoint.active, .placemarkAddWaypoint:hover {
+
+background-color: #0056b3;
+cursor: pointer;
+
+}
+
+.waypoint-popup {
+font-size:2vh;
+margin: 20px;
+align-items: center;
+text-align: center;
+}
+
+.waypoint-popup-item {
+
+border: 2px outset rgb(215, 215, 215);
+background-image: radial-gradient(100% 100% at 100% 0, #938ea9 0, #363147 100%);
+padding: 7px;
+align-items: center;
+display: column;
+
+}
+
+.popupSelectButton {
+
+width: 100%;
+text-align: center;
+border-radius: 1vh; /* Rounded corners */
+border: 2px outset white;
+}
+
+.popupSelectButton {
+
+width: 100%;
+text-align: center;
+border-radius: 1vh; /* Rounded corners */
+border: 2px outset white;
+}
+
+.popupSelectButton.deselected:hover{
+
+background-color: rgb(215, 215, 215);
+cursor: pointer;
+}
+
+.popupSelectButton.selected:hover{
+
+background-color: #3f9742;;
+cursor: pointer;
+}
+
+.popupAssignButton {
+
+width: 80%;
+text-align: center;
+border-radius: 1vh; /* Rounded corners */
+border: 2px outset white;
+background-image: radial-gradient(100% 100% at 100% 0, #ffffff, #cbcbcb 100%);
+}
+
+.popupAssignButton:enabled:hover {
+
+
+cursor: pointer;
+}
+
+.popupAssignButton:disabled {
+
+background-color: rgb(215, 215, 215);
+cursor:default;
+}
+
+.popupButton {
+  width: 100%;
+  text-align: center;
+  border-radius: 1vh; /* Rounded corners */
+  border: 2px outset white;
+}
+
+.popupButton:hover {
+
+background-color: rgb(215, 215, 215);
+cursor: pointer;
+}
+
+
+.assignNewWaypointButton {
+border-radius: 1vh; /* Rounded corners */
+border: 2px outset white;
+width: 16vh; /* Butonun genişliği */
+height: 4vh; /* Butonun yüksekliği */
+background-color: #007bff; /* Butonların arka plan rengi */
+color: white; /* Buton metninin rengi */
+padding: 0; /* İçerik paddingini kaldır */
+cursor: pointer; /* Buton üzerine gelindiğinde imleç şeklini değiştirme */
+text-align: center; /* Metni ortala */
+font-size: 2vh; /* Font boyutu */
+margin-right: 1vh; /* Butonlar arasındaki boşluk */
+}
+
+.assignNewWaypointButton:hover {
+background-color: #0056b3; /* Üzerine gelindiğinde buton rengini koyulaştır */
+}
+
+.assignNewWaypointButton.active {
+background-color: green; /* Aktif durumdaki butonun arka plan rengi yeşil */
+}
+
+.assignNewWaypointButton.inactive {
+background-color: #007bff; /* İnaktif durumdaki butonun arka plan rengi kırmızı */
+}
+
+.assignedWaypointAssignNew {
+
+  width: 17vh;
+
+}
+
+.assignedWaypointAssignNew.active {
+
+  background-image: radial-gradient(100% 100% at 100% 0, #80ff86   0, #2ac532 100%);
+}
+
+.assignedWaypointAssignNew.inactive:hover{
+
+  background-image: radial-gradient(100% 100% at 100% 0, #8677a7  0, #2a203e 100%);
+  transform: translateY(-2px);
+}
+
+.assignedWaypointAssignNew.active:hover{
+
+  background-image: radial-gradient(100% 100% at 100% 0, #80ff86   0, #1a9020 100%);
+  transform: translateY(-2px);
+}
+
+
+.waypoint-startbutton{
+
+  width: 13vh;
+}
+
+.waypoint-startbutton.active{
+
+  background-image: radial-gradient(100% 100% at 100% 0, #80ff86   0, #2ac532 100%);
+}
+
+
+.movementModeSelectVehicle.selected {
+
+  background-image: radial-gradient(100% 100% at 100% 0, #80ff86   0, #2ac532 100%);
+}
+.movementModeSelectVehicle.deselected{
+
+  background-image: radial-gradient(100% 100% at 100% 0, #8677a7  0, #2a203e 100%);
+  color: white;
+  
+}
+
+.assignedPlacemarkDeleteButton {
+
+  height: 3vh;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  width: 49%;
+  display: table-column; /* Make the button a block element */
+}
+
+.assignedPlacemarkUnassignButton {
+  display: table-column; /* Make the button a block element */
+  margin-top: 5px; /* Space between details and button */
+  margin-right: 2px;
+
+  background-image: radial-gradient(100% 100% at 100% 0, #ffae6c, #ff7b0f 100%);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center; /* Center text inside the button */
+
+  width:49%;
+  height: 3vh;
+  border-radius: 1vh; /* Rounded corners */
+  border: 2px outset white;
+  font-size: 2vh;
+}
