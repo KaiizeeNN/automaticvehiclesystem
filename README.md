@@ -1,15 +1,22 @@
-# WorldWind Automated Vehicle Management System
+# Automated Vehicle Management System
 
-Created with WorldWind-React.js (Frontend)-Node.js (Backend) app for automated vehicles. It alllows users to do:
+A 3D vehicle tracking and management platform built with WorldWind API, featuring a React.js frontend and Node.js backend.
+Designed to manage and control fleets of 100+ automated vehicles simultaneously with advanced waypoint and route assignment features.
 
-Add different vehicle types on the World Wind world map. 
+## Features
 
-"Assign Available Waypoints" (Currently added waypoints but waypoints that are not assigned to any vehicle.) and "Assign New" (Add waypoint and assign it to that vehicle automatically) menus.
+- 3D Vehicle Tracking – Real-time vehicle visualization on a WorldWind-powered map.
+- Waypoint Management
+    - Assign Available Waypoints – Attach existing, unassigned waypoints to a vehicle.
+    - Assign New – Create a new waypoint and automatically assign it to a vehicle.
+- Obstacle Placement – Add obstacles dynamically to simulate complex environments.
+- Route Control – Vehicles move toward their assigned waypoints with start/stop control.
+- Manual Override – Switch to manual mode with the “Activate Manual Movement” feature.
+- Scalable Fleet Management – Supports 100+ vehicles tracked and managed simultaneously.
 
-Add obstacles.
+## Tech Stack
 
-Add waypoints that is not assigned to the vehicles.
-
-Start/Stop button to move the vehicles towards its waypoints.
-
-Also, you can control the vehicles manually with the "Activate Manual Movement" button.
+- Frontend: React.js
+- Backend: Node.js (REST API)
+- 3D Map Engine: NASA WorldWind
+- Other Tools: JavaScript, CSS, HTML5
